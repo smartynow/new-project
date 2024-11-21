@@ -1,1 +1,50 @@
 // Contains variables, config switches, and other project-wide settings.
+// Colors
+$colors: (
+        'primary': red,
+);
+:root {
+  @each $name, $value in $colors {
+    --color-#{$name}: #{$value};
+  }
+}
+// Font
+$fonts: (
+        'primary': 'Roboto, sans',
+);
+:root {
+  @each $name, $value in $fonts {
+    --font-#{$name}: #{$value};
+  }
+}
+// Font Size
+$font-sizes: (
+        'xs': 0.75rem,
+        'sm': 0.875rem,
+        'base': 1rem,
+        'lg': 1.125rem,
+        'xl': 1.25rem,
+);
+$line-heights: (
+        'xs': 1,
+        'sm': 1.25,
+        'md': 1.5,
+        'lg': 1.5,
+        'xl': 1.75
+);
+:root {
+  @each $name, $value in $font-sizes {
+    --size-#{$name}: #{$value};
+  }
+}
+// Breakpoints (using Bootstrap's default breakpoints)
+$breakpoints: (
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px,
+        'xxl': 1400px,
+        '3xl': 1700px
+);
+// Container
+$container-padding: 0 15px;

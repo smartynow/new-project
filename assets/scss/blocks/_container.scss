@@ -1,0 +1,11 @@
+.container {
+  width: 100%;
+  padding: $container-padding;
+
+  @each $device, $breakpoint in $breakpoints {
+    @include media($device) {
+      max-width: $breakpoint;
+      margin: 0 auto;
+    }
+  }
+}

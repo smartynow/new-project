@@ -1,1 +1,151 @@
 // Includes mixins and functions used throughout the project.
+
+// Get color from the settings file
+@function get-color($name) {
+  @return map-get($colors, $name);
+}
+
+//Get font size from the settings file
+@function get-fz($name) {
+  @return map-get($font-sizes, $name);
+}
+
+// Get breakpoint from the settings file
+@function get-breakpoint($device) {
+  @if map-has-key($breakpoints, $device) {
+    @return map-get($breakpoints, $device);
+  } @else {
+    @error "No breakpoint defined for #{$device}";
+  }
+}
+
+// Media Queries
+@mixin media($device, $type: min) {
+  $breakpoint: get-breakpoint($device);
+
+  @if $type == min {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  } @else if $type == max {
+    $breakpoint: $breakpoint - 0.02px;
+
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  } @else {
+    @error "Invalid type: #{$type}. Use 'min' or 'max'.";
+  }
+}
+
+// Font Size Classes Generator Mixin
+@mixin generate-font-sizes($block: 'text', $fz-array: $font-sizes, $lh-array: $line-heights) {
+  @each $size, $value in $fz-array {
+    // Generate class without breakpoint
+    .#{$block}--size-#{$size} {
+      font-size: $value;
+      line-height: map-get($lh-array, md);
+    }
+
+    // Generate classes with breakpoints
+    @each $breakpoint, $breakpoint-value in $breakpoints {
+      .#{$block}--#{$breakpoint}-size-#{$size} {
+        font-size: $value;
+        line-height: map-get($lh-array, md);
+      }
+    }
+  }
+}
+
+// Color Classes Generator Mixin
+@mixin generate-color-classes($block: 'text', $color-map: $colors) {
+  @each $name, $value in $color-map {
+    // Generate class without breakpoint
+    .#{$block}--color-#{$name} {
+      color: $value;
+    }
+
+    // Generate classes with breakpoints
+    @each $breakpoint, $breakpoint-value in $breakpoints {
+      .#{$block}--#{$breakpoint}-color-#{$name} {
+        color: $value;
+      }
+    }
+  }
+}
+
+// Background Color Classes Generator Mixin
+@mixin generate-bg-color-classes($block: 'page', $color-map: $colors) {
+  @each $name, $value in $color-map {
+    // Generate class without breakpoint
+    .#{$block}--bg-#{$name} {
+      background-color: $value;
+    }
+
+    // Generate classes with breakpoints
+    @each $breakpoint, $breakpoint-value in $breakpoints {
+      .#{$block}--#{$breakpoint}-bg-#{$name} {
+        background-color: $value;
+      }
+    }
+  }
+}
+
+// Transition Mixin
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+// Flexbox Mixins
+@mixin flex-space-between($ai: center) {
+  display: flex;
+  justify-content: space-between;
+  align-items: $ai;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Grid Mixins
+@mixin grid($columns: 1, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Position Mixins
+@mixin fixed-top($top: 0, $z-index: 10) {
+  position: fixed;
+  top: $top;
+  left: 0;
+  right: 0;
+
+  z-index: $z-index;
+}
+
+@mixin absolute-center($z-index: 0) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: $z-index;
+}
+
+@mixin absolute-center-x($z-index: 0) {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: $z-index;
+}
+
+@mixin absolute-center-y($z-index: 0) {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  z-index: $z-index;
+}
