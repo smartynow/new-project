@@ -93,6 +93,45 @@ yarn build
 - Modular CSS architecture
 - Responsive design preparation
 
+## Usage
+### Development Mode
+Start a local development server with live reload:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+### Production Build
+Generate a minified CSS build:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+Gulp Tasks
+1. Clean Output Directory
+   Deletes the assets/css/ folder to ensure a fresh build - `gulp reset`
+
+2. Compile SCSS
+   Processes SCSS files into CSS, applies auto-prefixing, and minifies the output - `gulp scss`
+
+3. Start Local Server
+   Runs a live-reloading development server using BrowserSync - `gulp server`
+
+
+4. Watch Files
+   Monitors changes in SCSS files and automatically recompiles them - `gulp watcher`
+
+5. Development Workflow
+   Combines all tasks for development (clean, compile SCSS, watch files, and start server)- `gulp`
+
+6. Production Workflow
+   Builds the project for production (clean and compile SCSS) - `gulp build`
+
 ## Recommended Extensions
 - PHPStorm, Zed or Visual Studio Code
 - Sass/SCSS language support
@@ -103,9 +142,3 @@ yarn build
 - Ensure all dependencies are installed correctly
 - Check Node.js and npm versions
 - Verify Gulp CLI is installed globally
-
-## License
-[Specify your project license]
-
-## Contact
-[Your contact information or project maintainer details]
