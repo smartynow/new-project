@@ -1,42 +1,46 @@
 // Contains variables, config switches, and other project-wide settings.
+
 // Colors
 $colors: (
         'primary': red,
+        'bg-primary': green,
 );
-:root {
-  @each $name, $value in $colors {
-    --color-#{$name}: #{$value};
-  }
-}
-// Font
-$fonts: (
-        'primary': 'Roboto, sans',
+
+// Typography
+$typography: (
+        'font': (
+                'primary': 'Crimson Text, serif',
+                'secondary': 'Josefin Sans, sans'
+        ),
+        'style': (
+                'primary': normal
+        ),
+        'weight': (
+                'title': 400,
+        ),
+        'size': (
+                'title': 30px,
+        ),
+        'line-height': (
+                'title': 20px,
+        )
 );
-:root {
-  @each $name, $value in $fonts {
-    --font-#{$name}: #{$value};
-  }
-}
-// Font Size
-$font-sizes: (
-        'xs': 0.75rem,
-        'sm': 0.875rem,
-        'base': 1rem,
-        'lg': 1.125rem,
-        'xl': 1.25rem,
+
+// Responsive Typography
+$breakpoint-suffixes: ('sm', 'md', 'lg', 'xl', 'xxl');
+$responsive-typography: (
+        'size': (
+                'lg': (
+                        'title': 80px,
+                ),
+        ),
+        'line-height': (
+                'lg': (
+                        'title': 100%,
+                ),
+        )
 );
-$line-heights: (
-        'xs': 1,
-        'sm': 1.25,
-        'md': 1.5,
-        'lg': 1.5,
-        'xl': 1.75
-);
-:root {
-  @each $name, $value in $font-sizes {
-    --size-#{$name}: #{$value};
-  }
-}
+
 // Breakpoints (using Bootstrap's default breakpoints)
 $breakpoints: (
         'sm': 576px,
@@ -46,5 +50,29 @@ $breakpoints: (
         'xxl': 1400px,
         '3xl': 1700px
 );
-// Container
+
+// Container Padding
 $container-padding: 0 15px;
+
+// Header
+:root {
+  --header-height: 0px; // Default
+  // Colors
+  @each $name, $value in $colors {
+    --color-#{$name}: #{$value};
+  }
+  // Typography
+  @each $type, $values in $typography {
+    @each $name, $value in $values {
+      --#{$type}-#{$name}: #{$value};
+    }
+  }
+  // Responsive Typography
+  @each $type, $sizes in $responsive-typography {
+    @each $breakpoint, $values in $sizes {
+      @each $name, $value in $values {
+        --#{$type}-#{$breakpoint}-#{$name}: #{$value};
+      }
+    }
+  }
+}
