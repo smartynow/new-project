@@ -2,8 +2,11 @@
 
 // Colors
 $colors: (
-        'primary': red,
-        'bg-primary': green,
+        'primary': #C09342,
+        'bg-primary': #102b2a,
+        'title': #FFFFFF,
+        'title-accent': var(--color-primary),
+        'text': #FFFFFF,
 );
 
 // Typography
@@ -17,12 +20,23 @@ $typography: (
         ),
         'weight': (
                 'title': 400,
+                'text': 300
         ),
         'size': (
                 'title': 30px,
+                'title-about-us': 25px,
+                'title-about-us-label': 50px,
+                'title-about-us-sub': 32px,
+                'title-hero': 25px,
+                'text': 10px
         ),
         'line-height': (
                 'title': 20px,
+                'title-about-us': 30px,
+                'title-about-us-label': 50px,
+                'title-about-us-sub': 42px,
+                'title-hero': 28px,
+                'text': 18px
         )
 );
 
@@ -30,14 +44,38 @@ $typography: (
 $breakpoint-suffixes: ('sm', 'md', 'lg', 'xl', 'xxl');
 $responsive-typography: (
         'size': (
+                'sm': (
+                        'title-hero': 40px
+                ),
+                'md': (
+                        'title-hero': 55px
+                ),
                 'lg': (
                         'title': 80px,
+                        'title-about-us': 60px,
+                        'text': 16px
                 ),
+                'xxl': (
+                        'title-hero': 70px,
+                        'title-about-us-label': 110px,
+                )
         ),
         'line-height': (
+                'sm': (
+                        'title-hero': 40px
+                ),
+                'md': (
+                        'title-hero': 60px
+                ),
                 'lg': (
                         'title': 100%,
+                        'title-about-us': 74px,
+                        'text': 24px
                 ),
+                'xxl': (
+                        'title-hero': 80px,
+                        'title-about-us-label': 128px,
+                )
         )
 );
 
@@ -54,8 +92,8 @@ $breakpoints: (
 // Container Padding
 $container-padding: 0 15px;
 
-// Header
 :root {
+  // Header
   --header-height: 0px; // Default
   // Colors
   @each $name, $value in $colors {

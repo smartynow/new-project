@@ -1,0 +1,31 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-style: var(--style-primary);
+  font-weight: var(--weight-title);
+  font-size: var(--size-title);
+  line-height: var(--line-height-title);
+
+  color: var(--color-title);
+}
+
+p,
+span,
+a {
+  font-family: var(--font-secondary);
+  font-style: var(--style-primary);
+  font-weight: var(--weight-text);
+  font-size: var(--size-text);
+  line-height: var(--line-height-text);
+
+  color: var(--color-text);
+
+  @include media('lg') {
+    font-size: var(--size-lg-text);
+    line-height: var(--line-height-lg-text);
+  }
+}
